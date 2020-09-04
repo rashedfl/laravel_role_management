@@ -65,7 +65,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        if(Gate::denies('edit-user'))
+        if(Gate::denies('manage-user'))
         {
             return redirect()->route('admin.users.index');
         }
@@ -104,7 +104,7 @@ class UserController extends Controller
     {
         //dd($user);
 
-        if(Gate::denies('delete-user'))
+        if(Gate::denies('manage-user'))
         {
             return redirect()->route('admin.users.index');
         }
