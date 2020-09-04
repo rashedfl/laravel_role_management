@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10">
             <div class="card">
                 <div class="card-header">All Users</div>
 
@@ -15,6 +15,7 @@
                 				<th>#</th>
                 				<th>Name</th>
                 				<th>Email</th>
+                                <th>Role</th>
                 				<th>Action</th>
                 			</tr>
                 		</thead>
@@ -24,9 +25,10 @@
                 				<td>{{ $user->id }}</td>
                 				<td>{{ $user->name }}</td>
                 				<td>{{ $user->email }}</td>
+                                <td>{{ implode(', ', $user->roles()->get()->pluck('name')->toArray()) }}</td>
                 				<td>
-                					<a href="" class="btn btn-info">Edit</a>
-                					<a href="" class="btn btn-danger">Delete</a>
+                					<a href="{{ route('admin.users.edit', $user->id)}}" class="btn btn-info">Edit</a>
+                					<a href="{{ route('admin.users.destroy', $user->id)}}" class="btn btn-danger">Delete</a>
                 				</td>
                 			</tr>                 
                   			 @endforeach
