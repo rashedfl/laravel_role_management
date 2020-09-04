@@ -104,7 +104,7 @@ class UserController extends Controller
     {
         //dd($user);
 
-        if(Gate::denies('manage-user'))
+        if(Gate::denies('manage-users'))
         {
             return redirect()->route('admin.users.index');
         }
