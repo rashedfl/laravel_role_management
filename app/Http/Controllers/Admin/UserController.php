@@ -104,6 +104,11 @@ class UserController extends Controller
     {
         //dd($user);
 
+        if(Gate::denies('delete-user'))
+        {
+            return redirect()->route('admin.users.index');
+        }
+
         $user->roles()->detach();
         $user->delete();
 
