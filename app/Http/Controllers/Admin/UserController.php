@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Role;
+use Gate;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -64,6 +65,10 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        if(Gate::denies('edit-user'))
+        {
+            return redirect()->route('admin.users.index');
+        }
         //dd($user);
         $roles = Role::all();
 
