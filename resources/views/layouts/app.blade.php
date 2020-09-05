@@ -38,11 +38,13 @@
                     
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+                        @can('manage-users')
                         <li class="nav-item">
                              <a class="btn btn-primary" href="{{ route('admin.users.index') }}">
                             User Management
                         </a>
                         </li>
+                        @endcan
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
