@@ -27,7 +27,9 @@
                 				<td>{{ $user->email }}</td>
                                 <td>{{ implode(', ', $user->roles()->get()->pluck('name')->toArray()) }}</td>
                 				<td>
+                                    @can('edit-users')
                 					<a href="{{ route('admin.users.edit', $user->id)}}" class="btn btn-info float-left">Edit</a>
+                                    @endcan
                 					<form action="{{ route('admin.users.destroy', $user) }}" method="POST" class="float-left">
                                         @csrf
                                         {{ method_field('DELETE') }}
