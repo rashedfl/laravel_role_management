@@ -92,11 +92,16 @@ class UserController extends Controller
 
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->save();
+        if($user->save()){
 
-        return redirect()->route('admin.users.index');
+        $request->session()->flash('success', $user->name . ' has been successfully updated');
+    }else{
+        $request->session()->flash('error', 'There was an error updating the user');
+    }
+    return redirect()->route('admin.users.index');
 
     }
+   
 
     /**
      * Remove the specified resource from storage.
